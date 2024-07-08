@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+.swiper {
+  width: 100% !important;
+height: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.swiper-slide {
+  text-align: center  !important;
+  font-size: 18px !important;
+  background: #fff;
+  height: calc((100% - 30px) / 2) ;
+
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+  
+  .swiper-slide img {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+  }
+  
+/* slider 1 */
+  .swiper-pagination-bullet {
+    background-color: gray !important; /* Change to your desired color */
+  }
+  
+  .swiper-pagination-bullet-active {
+    background-color: red !important; /* Change to your desired active color */
+  }
+
+  /*slider 2  CaruselCard */
+
+   /* .swiper-slide-active{
+    display: flex !important;
+
+  } */
+
+   .container_card {
+    position: relative !important;
+
+  }
+
+  .container_card .swiper-button-prev,
+  .container_card .swiper-button-next {
+  position: static !important; 
+  transform: translateY(-50%) !important;
+  z-index:  10 !important;
+  background-color:  #F5F5F5 !important;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  color: black !important;
+  padding: 10px !important;
+  border: none !important;
+  cursor: pointer !important;
+  border-radius: 50% !important;
+  font-size: 30px !important;
+} 
+
+
+.container_card .swiper-button-prev::after,
+.container_card .swiper-button-next::after{
+  display: none;
+}
+
+.container_card .swiper-button-prev {
+   /* left: 93% !important; */
+   background-image: url('/src/assets//images/arrow-left.png') !important;
+
+
+
+  
+}
+
+.container_card .swiper-button-next {
+ /* right: 0% !important; */
+ background-image: url('/src/assets//images/arrow-right.png')  !important;
+
+}
+
+
+
+/* slider 3 CarouselCategory */
+
+.container_category {
+  position: relative !important;
+
+}
+
+.container_category .swiper-button-prev,
+.container_category .swiper-button-next {
+position: static !important; 
+transform: translateY(-50%) !important;
+z-index:  10 !important;
+background-color:  #F5F5F5 !important;
+background-repeat: no-repeat;
+background-position: center;
+background-size: contain;
+color: black !important;
+padding: 10px !important;
+border: none !important;
+cursor: pointer !important;
+border-radius: 50% !important;
+font-size: 30px !important;
+} 
+
+
+.container_category .swiper-button-prev::after,
+.a>.swiper-button-next::after{
+display: none;
+}
+
+.container_category .swiper-button-prev {
+ /* left: 93% !important; */
+ background-image: url('/src/assets//images/arrow-left.png') !important;
+
+
+
+
+}
+
+.container_category .swiper-button-next {
+/* right: 0% !important; */
+background-image: url('/src/assets//images/arrow-right.png')  !important;
+
+}
+
+
+/* slider 4 */
+.slider-container {
+  position: relative;
+}
+
+.slider-container .slick-prev,
+.slider-container .slick-next {
+  top: 0;
+  right: 10px;
+  z-index: 1;
+  width: auto;
+  height: auto;
+  background-color: black;
+  border-radius: 50%;
+}
+
+.slider-container .slick-prev {
+  left: auto;
+  right: 40px;
+}
+
+.slider-container .slick-next {
+  right: 10px;
+}
+
+.slider-container .slick-prev:hover,
+.slider-container .slick-next:hover {
+  background-color: black !important;
+}
+
+
+
+.mySwiper_Card>div>div{
+  display: flex !important;
+}
