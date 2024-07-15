@@ -5,11 +5,30 @@ import product from '../db/data.json'
 export const GlobalContext = createContext();
 
 export const ContextProvider = ({ children}) => {
-    const [data, setData] = useState(product.product);
+
+  const [data, setData] = useState(localStorage.getItem('data') ? JSON.parse(localStorage.getItem('data')) : product.product);
+  
+  useEffect(() => {
+    localStorage.setItem('data', JSON.stringify(data))
+  },[data])
+  
     const [search, setSearch] = useState("");
     const [addtoCart, setAddtoCart] = useState([]);
+
+  // Login
+  const [getUsers, setGetUsers] = useState(localStorage.getItem('users') ? JSON.parse(localStorage.getItem('users')) : []);
+
+  const[activeUser,setActiveUser]=useState([])
+
+  useEffect(() => {
+    
+    localStorage.setItem('users', JSON.stringify(getUsers)) //qirilma
+    setActiveUser(getUsers.find((user) => user?.status === true))
+ 
+  },[getUsers])
+
   return (
-    <GlobalContext.Provider value={{ data, setData,search, setSearch,addtoCart, setAddtoCart}}>
+    <GlobalContext.Provider value={{ data, setData,search, setSearch,addtoCart, setAddtoCart,getUsers, setGetUsers,activeUser,setActiveUser}}>
       {children}
     </GlobalContext.Provider>
   )

@@ -29,18 +29,18 @@ export const DetailsProduct = () => {
   };
 
   const[isActiveColor,setIsActiveColor]=useState(1)
-      
+const[activeImg,setActiveImg]=useState(0)
 
     return (
         <>{
           detailProduct.id!=undefined &&
           <div className='grid xl:grid-cols-7 grid-col-4 gap-4 px-smallCon md:px-mediumCon lg:px-largeCon my-20 '>
 
-            <div className='order-1 xl:order-1 col-span-1 row-span-1 xl:col-span-1 xl:row-span-1 bg-[#F5F5F5] p-2 flex justify-center items-center'>
+            <div onClick={()=>setActiveImg(0)} className='order-1 xl:order-1 col-span-1 row-span-1 xl:col-span-1 xl:row-span-1 bg-[#F5F5F5] p-2 flex justify-center items-center'>
                 <img src={`/images/${detailProduct.images[0]} `} alt="Havic HV G-92 Gamepad" className="w-24 h-24 object-contain" />
             </div>
             <div className='order-5 xl:order-2 col-span-4 row-span-4 xl:col-span-3 xl:row-span-4 bg-[#F5F5F5]  flex justify-center items-center '>
-                <img src={`/images/${detailProduct.images[0]} `} alt="Havic HV G-92 Gamepad" />
+                <img src={`/images/${detailProduct.images[activeImg]} `} alt="Havic HV G-92 Gamepad" />
 
             </div>
             <div className='order-6 xl:order-3 col-span-4 row-span-4 xl:col-span-3 xl:row-span-4 space-y-4 xl:pl-8 '>
@@ -90,15 +90,15 @@ export const DetailsProduct = () => {
                 </div>
                 </div>
             </div>
-            <div className='order-2 xl:order-4 col-span-1 row-span-1 xl:col-span-1 xl:row-span-1 bg-[#F5F5F5] p-2 flex justify-center items-center'>
+            <div onClick={()=>setActiveImg(1)} className='order-2 xl:order-4 col-span-1 row-span-1 xl:col-span-1 xl:row-span-1 bg-[#F5F5F5] p-2 flex justify-center items-center'>
                 <img src={`/images/${detailProduct.images[1]} `} alt="Havic HV G-92 Gamepad" className="w-24 h-24 object-contain" />
 
             </div>
-            <div className='order-3 xl:order-5 col-span-1 row-span-1 xl:col-span-1 xl:row-span-1 bg-[#F5F5F5] p-2 flex justify-center items-center'>
+            <div onClick={()=>setActiveImg(2)} className='order-3 xl:order-5 col-span-1 row-span-1 xl:col-span-1 xl:row-span-1 bg-[#F5F5F5] p-2 flex justify-center items-center'>
                 <img src={`/images/${detailProduct.images[2]} `} alt="Havic HV G-92 Gamepad" className="w-24 h-24 object-contain" />
 
             </div>
-            <div className='order-4 xl:order-6 col-span-1 row-span-1 xl:col-span-1 xl:row-span-1 bg-[#F5F5F5] p-2 flex justify-center items-center'>
+            <div onClick={()=>setActiveImg(3)} className='order-4 xl:order-6 col-span-1 row-span-1 xl:col-span-1 xl:row-span-1 bg-[#F5F5F5] p-2 flex justify-center items-center'>
                 <img src={`/images/${detailProduct.images[3]} `} alt="Havic HV G-92 Gamepad" className="w-24 h-24 object-contain" />
 
             </div>

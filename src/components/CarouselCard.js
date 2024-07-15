@@ -18,7 +18,7 @@ export const CarouselCard = ({products}) => {
             </div>
             <div >
             <Swiper
-            slidesPerView={1}
+            slidesPerView={3}
             spaceBetween={30}
             
             loop={true}

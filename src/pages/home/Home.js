@@ -13,6 +13,7 @@ export const Home = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
+    
     setProducts(data);
   }, [data]);
 

@@ -8,6 +8,10 @@ import { Product } from "./pages/product/Product";
 import { DetailsProduct } from "./components/DetailsProduct";
 import { NotFound } from "./components/NotFound";
 import { AddToCard } from "./components/AddToCard";
+import { ToastContainer } from "react-toastify";
+import { WishList } from "./components/WishList";
+import { Join } from "./account/Join";
+import { SignIn } from "./account/SignIn";
 
 
 function App() {
@@ -59,20 +63,20 @@ function App() {
         {
           path: '/add-to-card',
           element: <AddToCard />
-        }
-        // {
-        //   path: '/account/create',
-        //   element: <Join />
-        // },
-        // {
-        //   path: '/account/signin',
-        //   element: <SignIn />
-        // },
-        // // cards page
-        // {
-        //   path: '/cards',
-        //   element:<CardModal openCard={false}/>
-        // },
+        },
+
+        {
+          path: '/wishlist',
+          element: <WishList />
+        },
+        {
+          path: '/account/signup',
+          element: <Join />
+        },
+        {
+          path: '/account/signin',
+          element: <SignIn />
+        },
         // // admin panel
         // {
         //   path: '/admin',
@@ -85,7 +89,22 @@ function App() {
   return (
     <div className="App">
       <ContextProvider>
+      <ToastContainer
+position="top-right"
+autoClose={1000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="light"
+/>
+{/* Same as */}
+
         <RouterProvider router={router} />
+        <ToastContainer />
       </ContextProvider>
     </div>
   );

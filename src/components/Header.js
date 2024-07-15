@@ -11,8 +11,10 @@ import { ImCancelCircle } from "react-icons/im";
 import { GlobalContext } from '../context/GlobalState';
 
 export const Header = () => {
-  const { search,setSearch,addtoCart } = useContext(GlobalContext);
+  const { data,search,setSearch,getUsers, setGetUsers,activeUser,setActiveUser} = useContext(GlobalContext);
 
+  const wishList=data.filter((item)=>item.wish===true)
+  const cart=data.filter((item)=>item.addedCard===true)
 
 
   const logo = '/images/Logo.png'
@@ -34,11 +36,11 @@ export const Header = () => {
       name: "About",
       path: "/about",
     },
-    {
-      id: 2,
-      name: "Sign up",
-      path: "/sign",
-    },
+    // {
+    //   id: 2,
+    //   name: "Sign up",
+    //   path: "/account/signup",
+    // },
   ];
   const [active, setActive] = useState(0);
   const handleClick = (id) => {
@@ -55,6 +57,14 @@ export const Header = () => {
 
   // Hamburger menu
   const [isOpen, setIsOpen] = useState(false);
+
+
+
+  const removeAllStatus= ()=>{
+    setGetUsers(getUsers.map((user)=>({...user,status:false})))
+    window.location.reload()
+  }
+
   
   return (
     <div>
@@ -80,6 +90,21 @@ export const Header = () => {
                   )}
                 </NavLink>
               ))}
+              {/* account */}
+              <NavLink
+                  to={'/account/signup'}
+                  onClick={() => handleClick(3)}
+                  className=" h-16 md:h-20 lg:h-24 flex items-center relative  font-pop   text-nowrap "
+                >
+                  <div className='flex flex-col justify-center items-center'>
+                  <h3>{!activeUser ? "Sign up" : activeUser?.name}</h3>
+                  {activeUser && <button className='bg-blue-500 text-white rounded-lg px-2 py-1' onClick={removeAllStatus}> Log out</button> }
+                  </div>
+
+                  {active === 3 && (
+                    <div className="h-[4px] w-full bg-black absolute bottom-0 "></div>
+                  )}
+                </NavLink>
        </nav>
        {/* search */}
        <div className='w-4/12  min-w-[270px]  flex space-x-2 items-center text-sm  '>
@@ -92,12 +117,12 @@ export const Header = () => {
           </div>
 
           <div className='w-1/5 flex justify-between space-x-2  text-xl'>
-          <NavLink to={"/"} className={'relative'} >
+          <NavLink to={"/wishlist"} className={'relative'} >
           <AiOutlineHeart/>
-          <span className='absolute -top-2 -right-2 text-xs bg-red-500 text-white rounded-full px-1'>{}</span>
+          <span className='absolute -top-2 -right-2 text-xs bg-red-500 text-white rounded-full px-1'>{wishList.length}</span>
           </NavLink>
           <NavLink to={"/add-to-card"}  className={'relative'} >
-          <span className='absolute -top-2 -right-2 text-xs bg-red-500 text-white rounded-full px-1'>{addtoCart.length}</span>
+          <span className='absolute -top-2 -right-2 text-xs bg-red-500 text-white rounded-full px-1'>{cart.length}</span>
           <BsCart3 />
           </NavLink>
           </div>
@@ -141,12 +166,12 @@ export const Header = () => {
         </div>
 
         <div className='w-1/5 flex justify-between space-x-2  text-xl'>
-        <NavLink to={"/"} className={'relative'} >
+        <NavLink to={"/wishlist"} className={'relative'} >
           <AiOutlineHeart/>
-          <span className='absolute -top-2 -right-2 text-xs bg-red-500 text-white rounded-full px-1'>{}</span>
+          <span className='absolute -top-2 -right-2 text-xs bg-red-500 text-white rounded-full px-1'>{wishList.length}</span>
           </NavLink>
           <NavLink to={"/add-to-card"}  className={'relative'} >
-          <span className='absolute -top-2 -right-2 text-xs bg-red-500 text-white rounded-full px-1'>{addtoCart.length}</span>
+          <span className='absolute -top-2 -right-2 text-xs bg-red-500 text-white rounded-full px-1'>{cart.length}</span>
           <BsCart3 />
           </NavLink>
         </div>
