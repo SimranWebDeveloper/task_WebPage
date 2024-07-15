@@ -8,7 +8,7 @@ import { GlobalContext } from '../context/GlobalState';
 
 
 export const SignIn = () => {
-  const { getUsers, setGetUsers,activeUser,setActiveUser} = useContext(GlobalContext);
+  const { getUsers, setGetUsers,activeUser,setActiveUser,permition, setPermition} = useContext(GlobalContext);
 
 
   // const [users,setUsers]=useState(localStorage.getItem('users') ? JSON.parse(localStorage.getItem('users')) :[])
@@ -37,16 +37,28 @@ export const SignIn = () => {
   const submitForm=(e)=>{
     
     e.preventDefault();
-    if (getUsers.filter((item)=>item.name===user.name && item.email===user.email && item.password===user.password)) {
-      setGetUsers((prev)=>prev.map((item)=>item.name===user.name && item.email===user.email && item.password===user.password ? {...item,status:true} : item))
+
+    const isChecked = () => {
       
+      for (let item of getUsers) {
+        if (item.name===user.name && item.email===user.email && item.password===user.password  ) {
+         return true;
+        }
+
+      }
+      return false;
+      
+    }
+
+    if (isChecked()) {
+      setGetUsers((prev)=>prev.map((item)=>item.name===user.name && item.email===user.email && item.password===user.password ? {...item,status:true} : item))
+      setPermition(true)
       toast.success(`Welcome ${user.name}`);
-      window.location.reload()      
-      // navigate('/')
-   
+      navigate('/add-to-card')
+      
     }
     else{
-      toast.error('User not found, Please sign up')
+      toast.error('User not found, Please write again')
     }
   }
 

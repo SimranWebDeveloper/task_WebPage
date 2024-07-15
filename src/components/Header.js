@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom';
 import { FiSearch } from "react-icons/fi";
-
 import { BsFillSunFill,BsMoonFill } from "react-icons/bs";
 import { FcBusinessman } from "react-icons/fc";
 import { AiOutlineHeart } from "react-icons/ai";
@@ -75,7 +74,7 @@ export const Header = () => {
           <img src={logo} alt="logo" />
         </NavLink>
       </div>
-      <div className='hidden md:flex w-3/4  '>
+      <div className='hidden custom:flex w-3/4  '>
       <nav className="w-8/12 flex  space-x-3 lg:space-x-6  text-sm ">
               {dataNav.map((elem, index) => (
                 <NavLink
@@ -91,21 +90,27 @@ export const Header = () => {
                 </NavLink>
               ))}
               {/* account */}
-              <NavLink
-                  to={'/account/signup'}
+              <div
+                  
                   onClick={() => handleClick(3)}
-                  className=" h-16 md:h-20 lg:h-24 flex items-center relative  font-pop   text-nowrap "
+                  className=" h-16 md:h-20 lg:h-24 flex items-center   font-pop   text-nowrap relative "
                 >
-                  <div className='flex flex-col justify-center items-center'>
-                  <h3>{!activeUser ? "Sign up" : activeUser?.name}</h3>
+                  <div className='flex space-x-4  justify-center items-center'>
+                  <h3>{!activeUser ? <NavLink to={'/account/signup'} >Sign up</NavLink> : activeUser?.name}</h3>
+                  
                   {activeUser && <button className='bg-blue-500 text-white rounded-lg px-2 py-1' onClick={removeAllStatus}> Log out</button> }
+                  
                   </div>
+
 
                   {active === 3 && (
                     <div className="h-[4px] w-full bg-black absolute bottom-0 "></div>
                   )}
-                </NavLink>
+                </div>
+
+
        </nav>
+
        {/* search */}
        <div className='w-4/12  min-w-[270px]  flex space-x-2 items-center text-sm  '>
 
@@ -130,7 +135,7 @@ export const Header = () => {
        </div>
 
        {/* Hamburger */}
-       <div className='block md:hidden   w-full text-end  ' >
+       <div className='block custom:hidden   w-full text-end  ' >
        <button className='' onClick={()=>setIsOpen(!isOpen)}><GiHamburgerMenu/></button>
         
        
@@ -153,6 +158,24 @@ export const Header = () => {
                   )}
                 </NavLink>
               ))}
+                            {/* account */}
+                            <div
+                  
+                  onClick={() => handleClick(3)}
+                  className=" h-16 md:h-20 lg:h-24 flex items-center   font-pop   text-nowrap relative "
+                >
+                  <div className='flex space-x-4  justify-center items-center'>
+                  <h3>{!activeUser ? <NavLink to={'/account/signup'} >Sign up</NavLink> : activeUser?.name}</h3>
+                  
+                  {activeUser && <button className='bg-blue-500 text-white rounded-lg px-2 py-1' onClick={removeAllStatus}> Log out</button> }
+                  
+                  </div>
+
+
+                  {active === 3 && (
+                    <div className="h-[4px] w-full bg-black absolute bottom-0 "></div>
+                  )}
+                </div>
             </nav>
 
             {/* search */}

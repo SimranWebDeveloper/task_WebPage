@@ -19,10 +19,13 @@ module.exports = {
     },
 
     screens: {
+      'custom': '920px',
+      
       'sm': '480px',
 
 
       'md': '700px',
+      
 
 
       'lg': '1160px',

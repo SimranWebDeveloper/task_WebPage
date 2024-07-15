@@ -9,7 +9,7 @@ import { GlobalContext } from '../context/GlobalState';
 
 export const Join = () => {
 
-  const { getUsers, setGetUsers,activeUser,setActiveUser} = useContext(GlobalContext);
+  const { getUsers, setGetUsers,activeUser,setActiveUser,permition, setPermition} = useContext(GlobalContext);
 
 
   const [user, setUser] = useState(
@@ -47,9 +47,11 @@ export const Join = () => {
 
     if(isChecked()){     
       setGetUsers((prev)=>[...prev,{...user,status:true}])
+
+      setPermition(true)
       toast.success("Account created successfully");
-      window.location.reload();
-      // navigate('/')
+      // window.location.reload();
+      navigate('/add-to-card')
     }
   }
 

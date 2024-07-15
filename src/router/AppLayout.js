@@ -1,15 +1,19 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
-import { Outlet } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
+import { GlobalContext } from '../context/GlobalState'
 
 export const AppLayout = () => {
-  let mode=false
+  const {permition, setPermition} = useContext(GlobalContext);
   return (
-    <div className={`${mode  ? 'bg-gray-800 text-slate-50' :'bg-white text-black' } `} >
+    <div className={`'bg-white text-black `} >
       <Header/>
       <main >
-        <Outlet/>
+        
+          {/* permition ? <Outlet/> : <Navigate to={'/account/signup'}/> */}
+           <Outlet/>    
+        
       </main>      
       <Footer/>
     </div>

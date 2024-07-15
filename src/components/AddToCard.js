@@ -1,24 +1,32 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { GlobalContext } from '../context/GlobalState';
-import { NavLink } from 'react-router-dom';
+import {  NavLink, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 export const AddToCard = () => {
-    const { data,setData } = useContext(GlobalContext);
+    const { data,setData,permition, setPermition } = useContext(GlobalContext);
 
     const cards =data.filter((item) => item.addedCard ===true );
  
+    const navigate=useNavigate();
   const buyProducts = () => {
-    setData((prev) => {
-      const updatedData = prev.map((product) => {
-        if (product.addedCard) {
-          return { ...product, addedCard: false, wish: false, buy: true,times:0 };
-        }
-        return product;
+    if (permition) {
+      
+      setData((prev) => {
+        const updatedData = prev.map((product) => {
+          if (product.addedCard) {
+            return { ...product, addedCard: false, wish: false, buy: true,times:0 };
+          }
+          return product;
+        });
+        return updatedData;
       });
-      return updatedData;
-    });
-    toast.success("All products were bought successfully");
+      toast.success("All products were bought successfully");
+    }
+    else {
+      toast.warning("Please to sign in first");
+      navigate('/account/signup')
+    }
   };
 
 
@@ -99,7 +107,7 @@ export const AddToCard = () => {
             </div>
             <div className="flex justify-between font-bold mb-4">
               <span>Total:</span>
-              <span>${cards.reduce((acc, item) => acc + item.price*(item.times==undefined?1:item.times), 0)*0.9 < 0 ? 0 : cards.reduce((acc, item) => acc + item.price*(item.times==undefined?1:item.times), 0)*0.9}</span>
+              <span>${cards.reduce((acc, item) => acc + item.price*(item.times==undefined?1:item.times), 0)*0.9 < 0 ? 0 : (cards.reduce((acc, item) => acc + item.price*(item.times==undefined?1:item.times), 0)*0.9).toFixed(2)}</span>
             </div>
             <div className='flex justify-center items-center'>
             <button onClick={buyProducts} className="w-3/4 px-4 py-2 bg-red-500 text-white rounded">Proceed to checkout</button>

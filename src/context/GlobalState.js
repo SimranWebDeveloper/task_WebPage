@@ -27,8 +27,11 @@ export const ContextProvider = ({ children}) => {
  
   },[getUsers])
 
+  // permition
+  const [permition, setPermition] = useState(false)
+
   return (
-    <GlobalContext.Provider value={{ data, setData,search, setSearch,addtoCart, setAddtoCart,getUsers, setGetUsers,activeUser,setActiveUser}}>
+    <GlobalContext.Provider value={{ data, setData,search, setSearch,addtoCart, setAddtoCart,getUsers, setGetUsers,activeUser,setActiveUser,permition, setPermition}}>
       {children}
     </GlobalContext.Provider>
   )
